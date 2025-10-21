@@ -1,210 +1,352 @@
-import React from "react";
-import "../../App.css";
+import React, { useState, useEffect } from 'react';
+import '../../LandingPage.css';
 
 const LandingPage = () => {
+  const [currentCar, setCurrentCar] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const sportsCars = [
+    {
+      id: 1,
+      name: "Porsche 911 Turbo S",
+      price: "$203,500",
+      horsepower: "640 HP",
+      acceleration: "2.6s",
+      topSpeed: "205 mph",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+      color: "GT Silver Metallic",
+      description: "The pinnacle of sports car engineering with unmatched performance and luxury."
+    },
+    {
+      id: 2,
+      name: "Lamborghini Aventador SVJ",
+      price: "$517,770",
+      horsepower: "759 HP",
+      acceleration: "2.8s",
+      topSpeed: "217 mph",
+      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80",
+      color: "Arancio Borealis",
+      description: "Extreme design meets cutting-edge technology in this Italian masterpiece."
+    },
+    {
+      id: 3,
+      name: "Ferrari SF90 Stradale",
+      price: "$625,000",
+      horsepower: "986 HP",
+      acceleration: "2.5s",
+      topSpeed: "211 mph",
+      image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+      color: "Rosso Corsa",
+      description: "Ferrari's first series-production PHEV packs a hybrid powertrain with staggering performance."
+    },
+    {
+      id: 4,
+      name: "McLaren 720S",
+      price: "$299,000",
+      horsepower: "710 HP",
+      acceleration: "2.8s",
+      topSpeed: "212 mph",
+      image: "https://upload.wikimedia.org/wikipedia/commons/2/23/2018_McLaren_720S_V8_S-A_4.0.jpg",
+      color: "Sarthe Grey",
+      description: "Lightweight supercar with dihedral doors and aerospace-inspired design."
+    },
+    {
+      id: 5,
+      name: "Audi R8 V10 Performance",
+      price: "$194,200",
+      horsepower: "602 HP",
+      acceleration: "3.2s",
+      topSpeed: "205 mph",
+      image: "https://hips.hearstapps.com/hmg-prod/images/2023-audi-r8-gt-front-three-quarters-motion-3-1664827965.jpg?crop=0.684xw:0.577xh;0.0321xw,0.281xh&resize=1200:*",
+      color: "Daytona Gray",
+      description: "Everyday supercar with quattro all-wheel drive and naturally aspirated V10 engine."
+    },
+    {
+      id: 6,
+      name: "BMW M8 Competition",
+      price: "$133,995",
+      horsepower: "617 HP",
+      acceleration: "3.0s",
+      topSpeed: "190 mph",
+      image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+      color: "Brands Hatch Gray",
+      description: "Luxury grand tourer with racetrack-ready performance capabilities."
+    },
+    {
+      id: 7,
+      name: "Mercedes-AMG GT R",
+      price: "$162,900",
+      horsepower: "577 HP",
+      acceleration: "3.5s",
+      topSpeed: "198 mph",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Festival_automobile_international_2015_-_Mercedes_AMG_GT_-_003.jpg/1024px-Festival_automobile_international_2015_-_Mercedes_AMG_GT_-_003.jpg",
+      color: "Green Hell Magno",
+      description: "The beast from Affalterbach with track-focused aerodynamics and performance."
+    },
+    {
+      id: 8,
+      name: "Nissan GT-R Nismo",
+      price: "$210,740",
+      horsepower: "600 HP",
+      acceleration: "2.9s",
+      topSpeed: "205 mph",
+      image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80",
+      color: "Pearl White",
+      description: "Godzilla returns with enhanced aerodynamics and hand-built engine."
+    },
+    {
+      id: 9,
+      name: "Chevrolet Corvette Z06",
+      price: "$106,395",
+      horsepower: "670 HP",
+      acceleration: "2.6s",
+      topSpeed: "195 mph",
+      image: "https://issimi-vehicles-cdn.b-cdn.net/publicamlvehiclemanagement/VehicleDetails/599/timestamped-1718824678864-2023%20Chevrolet%20Corvette%20Z06%20Coupe%203LZ_000008.jpg?width=3840&quality=75",
+      color: "Arctic White",
+      description: "American supercar with mid-engine configuration and track-proven performance."
+    },
+    {
+      id: 10,
+      name: "Aston Martin DBS Superleggera",
+      price: "$316,300",
+      horsepower: "715 HP",
+      acceleration: "3.2s",
+      topSpeed: "211 mph",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/2018_Aston_Martin_DBS_Superleggera_V12_Automatic_5.2_Front.jpg/1024px-2018_Aston_Martin_DBS_Superleggera_V12_Automatic_5.2_Front.jpg",
+      color: "Skyfall Silver",
+      description: "British grand tourer with sublime elegance and brutal performance."
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCar((prev) => (prev + 1) % sportsCars.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const nextCar = () => {
+    setCurrentCar((prev) => (prev + 1) % sportsCars.length);
+  };
+
+  const prevCar = () => {
+    setCurrentCar((prev) => (prev - 1 + sportsCars.length) % sportsCars.length);
+  };
+
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen w-full">
-      {/* Navbar */}
-      <nav className="w-full flex justify-between items-center px-6 md:px-12 lg:px-20 xl:px-32 py-5 bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-lg"></div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
-            AutoElite
-          </h1>
+    <div className="landing-page">
+      {/* Navigation */}
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="nav-container">
+          <div className="nav-logo">
+            <span className="logo-icon">🏎️</span>
+            <span className="logo-text">LUX-ZER-Y CARS</span>
+          </div>
+          
+          <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+            <a href="#home" className="nav-link">Home</a>
+            <a href="#models" className="nav-link">Models</a>
+            <a href="#performance" className="nav-link">Performance</a>
+            <a href="#gallery" className="nav-link">Gallery</a>
+            <a href="#contact" className="nav-link">Contact</a>
+          </div>
+
+          <div className="nav-actions">
+            <button className="cta-button secondary">Test Drive</button>
+            <button className="cta-button primary">Configure</button>
+          </div>
+
+          <button 
+            className="mobile-menu-btn"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <div className="space-x-8 hidden md:flex items-center">
-          <a href="#inventory" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Inventory</a>
-          <a href="#features" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Features</a>
-          <a href="#about" className="text-gray-700 hover:text-red-600 transition-colors font-medium">About</a>
-          <a href="#contact" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Contact</a>
-        </div>
-        <button className="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-2.5 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 font-semibold shadow-md">
-          Book Test Drive
-        </button>
       </nav>
 
       {/* Hero Section */}
-      <section className="w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-12 lg:px-20 xl:px-32 py-20 md:py-32 gap-12">
-        <div className="w-full md:w-1/2">
-          <div className="inline-flex items-center space-x-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <span>✨</span>
-            <span>Premium Automotive Experience</span>
-          </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
-            Discover Your <span className="bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">Dream Car</span>
-          </h2>
-          <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-            Experience luxury, performance, and innovation with our curated collection of premium vehicles. 
-            From sleek sports cars to sophisticated SUVs, find the perfect match for your lifestyle.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-gradient-to-r from-red-600 to-red-800 text-white px-8 py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-semibold text-lg shadow-lg">
-              Explore Inventory
-            </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl hover:border-red-600 hover:text-red-600 transition-all duration-300 font-semibold text-lg">
-              View Offers
-            </button>
-          </div>
-        </div>
-        <div className="w-full md:w-1/2 relative">
-          <div className="absolute -inset-4 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur-lg opacity-20"></div>
-          <img
-            src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Luxury car"
-            className="rounded-3xl shadow-2xl w-full hover:scale-105 transition-transform duration-500 relative z-10"
+      <section className="hero" id="home">
+        <div className="hero-background">
+          <img 
+            src={sportsCars[currentCar].image} 
+            alt={sportsCars[currentCar].name}
+            className="hero-image"
           />
+          <div className="hero-overlay"></div>
         </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="w-full py-16 bg-white">
-        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="p-6">
-              <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
-              <div className="text-gray-600">Premium Vehicles</div>
+        <div className="hero-content">
+          <div className="hero-badge">
+            <span>PREMIUM COLLECTION</span>
+          </div>
+          
+          <h1 className="hero-title">
+            {sportsCars[currentCar].name}
+          </h1>
+          
+          <p className="hero-subtitle">
+            {sportsCars[currentCar].description}
+          </p>
+
+          <div className="hero-stats">
+            <div className="stat">
+              <span className="stat-value">{sportsCars[currentCar].horsepower}</span>
+              <span className="stat-label">Power</span>
             </div>
-            <div className="p-6">
-              <div className="text-3xl font-bold text-gray-900 mb-2">98%</div>
-              <div className="text-gray-600">Customer Satisfaction</div>
+            <div className="stat">
+              <span className="stat-value">{sportsCars[currentCar].acceleration}</span>
+              <span className="stat-label">0-60 mph</span>
             </div>
-            <div className="p-6">
-              <div className="text-3xl font-bold text-gray-900 mb-2">25+</div>
-              <div className="text-gray-600">Brands Available</div>
-            </div>
-            <div className="p-6">
-              <div className="text-3xl font-bold text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600">Support Service</div>
+            <div className="stat">
+              <span className="stat-value">{sportsCars[currentCar].topSpeed}</span>
+              <span className="stat-label">Top Speed</span>
             </div>
           </div>
+
+          <div className="hero-actions">
+            <button className="hero-cta primary">
+              Discover More
+              <span className="arrow">→</span>
+            </button>
+            <button className="hero-cta secondary">
+              Starting at {sportsCars[currentCar].price}
+            </button>
+          </div>
+        </div>
+
+        {/* Car Navigation */}
+        <div className="car-navigation">
+          <button className="nav-arrow prev" onClick={prevCar}>
+            ‹
+          </button>
+          <div className="car-indicators">
+            {sportsCars.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator ${index === currentCar ? 'active' : ''}`}
+                onClick={() => setCurrentCar(index)}
+              />
+            ))}
+          </div>
+          <button className="nav-arrow next" onClick={nextCar}>
+            ›
+          </button>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator">
+          <span>Scroll Down</span>
+          <div className="scroll-arrow"></div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="w-full py-24 bg-gradient-to-b from-white to-gray-50">
-        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose AutoElite</h3>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Unmatched service, premium quality, and exceptional value in every vehicle we offer
-            </p>
-          </div>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="features" id="models">
+        <div className="container">
+          <h2 className="section-title">Uncompromised Performance</h2>
+          <p className="section-subtitle">
+            Engineered for those who demand the extraordinary
+          </p>
+
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">⚡</div>
+              <h3>Lightning Fast</h3>
+              <p>Acceleration that pushes you back in your seat with every launch</p>
+            </div>
             
-            {/* Card 1 */}
-            <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-              <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-                🏆
-              </div>
-              <h4 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-red-600 transition-colors">Premium Quality</h4>
-              <p className="text-gray-600 leading-relaxed">
-                Every vehicle undergoes rigorous inspection and certification to ensure top-tier performance and reliability.
-              </p>
+            <div className="feature-card">
+              <div className="feature-icon">🎯</div>
+              <h3>Precision Handling</h3>
+              <p>Advanced suspension and steering for unparalleled control</p>
             </div>
-
-            {/* Card 2 */}
-            <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-              <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-                💰
-              </div>
-              <h4 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-red-600 transition-colors">Best Value</h4>
-              <p className="text-gray-600 leading-relaxed">
-                Competitive pricing with flexible financing options tailored to meet your budget and lifestyle needs.
-              </p>
+            
+            <div className="feature-card">
+              <div className="feature-icon">💎</div>
+              <h3>Luxury Crafted</h3>
+              <p>Hand-finished interiors with premium materials throughout</p>
             </div>
-
-            {/* Card 3 */}
-            <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-              <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-800 rounded-2xl flex items-center justify-center text-2xl text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-                🛠️
-              </div>
-              <h4 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-red-600 transition-colors">Expert Service</h4>
-              <p className="text-gray-600 leading-relaxed">
-                Our certified technicians provide comprehensive maintenance and support for your complete peace of mind.
-              </p>
+            
+            <div className="feature-card">
+              <div className="feature-icon">🛡️</div>
+              <h3>Advanced Safety</h3>
+              <p>Cutting-edge technology to protect what matters most</p>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Inventory Preview */}
-      <section id="inventory" className="w-full py-24 bg-white">
-        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
-          <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Featured Inventory</h3>
-            <p className="text-gray-600 text-lg">Discover our hand-picked selection of exceptional vehicles</p>
+      {/* Gallery Section */}
+      <section className="gallery" id="gallery">
+        <div className="container">
+          <h2 className="section-title">Premium Collection</h2>
+          <p className="section-subtitle">
+            Explore our exclusive lineup of high-performance sports cars
+          </p>
+          
+          <div className="gallery-grid">
+            {sportsCars.map((car, index) => (
+              <div key={car.id} className="gallery-card">
+                <div className="gallery-image">
+                  <img src={car.image} alt={car.name} />
+                  <div className="gallery-overlay">
+                    <button className="view-details-btn">View Details</button>
+                  </div>
+                </div>
+                <div className="gallery-content">
+                  <h3>{car.name}</h3>
+                  <p>{car.price}</p>
+                  <div className="car-specs">
+                    <span>{car.horsepower}</span>
+                    <span>{car.acceleration}</span>
+                    <span>{car.topSpeed}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Car 1 */}
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="BMW Sports Car" 
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  Premium
+        </div>
+      </section>
+
+      {/* Performance Section */}
+      <section className="performance" id="performance">
+        <div className="container">
+          <div className="performance-content">
+            <div className="performance-text">
+              <h2>Track-Ready Performance</h2>
+              <p>Our sports cars are engineered to dominate both the road and the racetrack. With advanced aerodynamics, precision-tuned suspensions, and powerful braking systems, each vehicle delivers an unparalleled driving experience.</p>
+              
+              <div className="performance-stats">
+                <div className="performance-stat">
+                  <span className="stat-number">700+</span>
+                  <span className="stat-label">Average Horsepower</span>
                 </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">BMW M8 Competition</h4>
-                <p className="text-gray-600 mb-4">Luxury sports coupe with exceptional performance</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-gray-900">$125,000</span>
-                  <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
-                    Details
-                  </button>
+                <div className="performance-stat">
+                  <span className="stat-number">3.0s</span>
+                  <span className="stat-label">0-60 mph Average</span>
+                </div>
+                <div className="performance-stat">
+                  <span className="stat-number">200+</span>
+                  <span className="stat-label">Top Speed (mph)</span>
                 </div>
               </div>
             </div>
-
-            {/* Car 2 */}
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/733745/pexels-photo-733745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="Mercedes SUV" 
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  Family
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Mercedes GLE</h4>
-                <p className="text-gray-600 mb-4">Spacious luxury SUV with advanced safety features</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-gray-900">$89,000</span>
-                  <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
-                    Details
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Car 3 */}
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="Audi Sedan" 
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  Executive
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Audi A8 L</h4>
-                <p className="text-gray-600 mb-4">Executive sedan with cutting-edge technology</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-gray-900">$95,000</span>
-                  <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
-                    Details
-                  </button>
-                </div>
+            
+            <div className="performance-visual">
+              <div className="rotating-car">
+                <div className="car-3d"></div>
               </div>
             </div>
           </div>
@@ -212,65 +354,60 @@ const LandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white text-center py-20 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-4xl md:text-5xl font-bold mb-6">Ready to Drive Your Dream Car?</h3>
-          <p className="mb-10 text-lg text-red-100 max-w-2xl mx-auto">
-            Schedule your test drive today and experience luxury automotive like never before. 
-            Our experts are here to help you find the perfect vehicle.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-red-600 font-bold px-10 py-4 rounded-xl hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-xl text-lg">
-              Book Test Drive
-            </button>
-            <button className="border-2 border-white text-white font-bold px-10 py-4 rounded-xl hover:bg-white hover:text-red-600 transition-all duration-300 text-lg">
-              Contact Sales
-            </button>
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Ready to Experience Excellence?</h2>
+            <p>Schedule your private test drive today and feel the difference</p>
+            <div className="cta-buttons">
+              <button className="cta-button primary large">Book Test Drive</button>
+              <button className="cta-button secondary large">Virtual Tour</button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-gray-900 text-gray-400 py-12">
-        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-32">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-lg"></div>
-                <h1 className="text-xl font-bold text-white">AutoElite</h1>
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-section">
+              <div className="footer-logo">
+                <span className="logo-icon">🏎️</span>
+                LUX-ZER-Y CARS
               </div>
-              <p className="text-gray-400 text-sm">
-                Premium automotive experience with exceptional service and quality vehicles.
-              </p>
+              <p>Redefining automotive excellence since 2024</p>
+              <div className="social-links">
+                <a href="#" className="social-link">Instagram</a>
+                <a href="#" className="social-link">Twitter</a>
+                <a href="#" className="social-link">YouTube</a>
+              </div>
             </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#inventory" className="hover:text-white transition-colors">Inventory</a></li>
-                <li><a href="#features" className="hover:text-white transition-colors">Services</a></li>
-                <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
-              </ul>
+            
+            <div className="footer-section">
+              <h4>Explore</h4>
+              <a href="#models">Models</a>
+              <a href="#performance">Performance</a>
+              <a href="#gallery">Gallery</a>
             </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Contact Info</h4>
-              <ul className="space-y-2 text-sm">
-                <li>📞 +1 (555) 123-4567</li>
-                <li>✉️ info@autoelite.com</li>
-                <li>📍 123 Automotive Drive, City</li>
-              </ul>
+            
+            <div className="footer-section">
+              <h4>Company</h4>
+              <a href="#about">About</a>
+              <a href="#careers">Careers</a>
+              <a href="#contact">Contact</a>
             </div>
-            <div>
-              <h4 className="text-white font-semibold mb-4">Business Hours</h4>
-              <ul className="space-y-2 text-sm">
-                <li>Mon-Fri: 9AM - 8PM</li>
-                <li>Saturday: 10AM - 6PM</li>
-                <li>Sunday: 11AM - 5PM</li>
-              </ul>
+            
+            <div className="footer-section">
+              <h4>Legal</h4>
+              <a href="#privacy">Privacy</a>
+              <a href="#terms">Terms</a>
+              <a href="#cookies">Cookies</a>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-sm">© 2025 AutoElite. All rights reserved. Premium automotive services.</p>
+          
+          <div className="footer-bottom">
+            <p>&copy; 2024 Elite Drive. All rights reserved.</p>
           </div>
         </div>
       </footer>
