@@ -79,13 +79,13 @@ const OrderPage = ({ onNavigateToListing }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800";
+        return "bg-yellow-100 text-yellow-800 border border-yellow-200";
       case "confirmed":
-        return "bg-blue-100 text-blue-800";
+        return "bg-blue-100 text-blue-800 border border-blue-200";
       case "delivered":
-        return "bg-green-100 text-green-800";
+        return "bg-green-100 text-green-800 border border-green-200";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-gray-100 text-gray-800 border border-gray-200";
     }
   };
 
@@ -102,18 +102,18 @@ const OrderPage = ({ onNavigateToListing }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-white to-red-50">
       {/* Navigation Header */}
-      <nav className="navbar bg-white shadow-lg">
+      <nav className="navbar bg-white shadow-lg border-b border-red-100">
         <div className="nav-container">
           <div className="nav-logo">
             <span className="logo-icon">🏎️</span>
-            <span className="logo-text">LUX-ZER-Y CARS</span>
+            <span className="logo-text text-red-600">LUX-ZER-Y CARS</span>
           </div>
           
           <div className="nav-actions">
             <button 
-              className="cta-button secondary"
+              className="cta-button secondary border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 mr-4"
               onClick={onNavigateToListing}
             >
               ← Back to Cars
@@ -126,41 +126,43 @@ const OrderPage = ({ onNavigateToListing }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Order Management</h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Manage and track all your vehicle orders in one place
-            </p>
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-6 border border-red-100">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">Order Management</h1>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Manage and track all your vehicle orders in one place
+              </p>
+            </div>
           </div>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">{orders.length}</div>
-              <div className="text-gray-600">Total Orders</div>
+            <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-red-100 hover:border-red-300 transition-all duration-300">
+              <div className="text-3xl font-bold text-red-600 mb-2">{orders.length}</div>
+              <div className="text-gray-700 font-medium">Total Orders</div>
             </div>
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-yellow-100 hover:border-yellow-300 transition-all duration-300">
               <div className="text-3xl font-bold text-yellow-600 mb-2">
                 {orders.filter(o => o.status === "pending").length}
               </div>
-              <div className="text-gray-600">Pending</div>
+              <div className="text-gray-700 font-medium">Pending</div>
             </div>
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-blue-100 hover:border-blue-300 transition-all duration-300">
               <div className="text-3xl font-bold text-blue-600 mb-2">
                 {orders.filter(o => o.status === "confirmed").length}
               </div>
-              <div className="text-gray-600">Confirmed</div>
+              <div className="text-gray-700 font-medium">Confirmed</div>
             </div>
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <div className="bg-white rounded-2xl shadow-lg p-6 text-center border border-green-100 hover:border-green-300 transition-all duration-300">
               <div className="text-3xl font-bold text-green-600 mb-2">
                 {orders.filter(o => o.status === "delivered").length}
               </div>
-              <div className="text-gray-600">Delivered</div>
+              <div className="text-gray-700 font-medium">Delivered</div>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="bg-white rounded-2xl shadow-lg mb-8">
-            <div className="border-b border-gray-200">
+          <div className="bg-white rounded-2xl shadow-lg mb-8 border border-red-100">
+            <div className="border-b border-red-100">
               <nav className="flex -mb-px">
                 {[
                   { id: "all", name: "All Orders" },
@@ -171,10 +173,10 @@ const OrderPage = ({ onNavigateToListing }) => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex-1 py-4 px-6 text-center font-medium text-sm border-b-2 transition-colors ${
+                    className={`flex-1 py-4 px-6 text-center font-medium text-sm border-b-2 transition-all duration-300 ${
                       activeTab === tab.id
-                        ? "border-red-500 text-red-600"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                        ? "border-red-500 text-red-600 bg-red-50"
+                        : "border-transparent text-gray-500 hover:text-red-600 hover:border-red-200"
                     }`}
                   >
                     {tab.name}
@@ -187,21 +189,21 @@ const OrderPage = ({ onNavigateToListing }) => {
             <div className="p-6">
               {filteredOrders.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="text-gray-400 text-6xl mb-4">🚗</div>
+                  <div className="text-red-200 text-6xl mb-4">🚗</div>
                   <h3 className="text-lg font-medium text-gray-900 mb-2">No orders found</h3>
                   <p className="text-gray-500">There are no orders in this category.</p>
                 </div>
               ) : (
                 <div className="space-y-6">
                   {filteredOrders.map(order => (
-                    <div key={order.id} className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <div key={order.id} className="bg-gradient-to-r from-white to-red-50 rounded-2xl p-6 border border-red-100 hover:border-red-300 transition-all duration-300">
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                         {/* Car Info */}
                         <div className="flex items-center space-x-4 flex-1">
                           <img
                             src={order.car.image}
                             alt={order.car.title}
-                            className="w-20 h-20 object-cover rounded-lg"
+                            className="w-20 h-20 object-cover rounded-lg border-2 border-red-100"
                           />
                           <div>
                             <h3 className="text-xl font-semibold text-gray-900">{order.car.title}</h3>
@@ -220,7 +222,7 @@ const OrderPage = ({ onNavigateToListing }) => {
                         {/* Customer Info */}
                         <div className="flex-1">
                           <h4 className="font-semibold text-gray-900 mb-2">Customer Details</h4>
-                          <p className="text-gray-600">{order.customer.name}</p>
+                          <p className="text-gray-700">{order.customer.name}</p>
                           <p className="text-gray-600 text-sm">{order.customer.email}</p>
                           <p className="text-gray-600 text-sm">{order.customer.phone}</p>
                         </div>
@@ -232,7 +234,7 @@ const OrderPage = ({ onNavigateToListing }) => {
                             {order.services?.map((service, index) => (
                               <span
                                 key={index}
-                                className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium"
+                                className="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-medium border border-red-200"
                               >
                                 {service}
                               </span>
@@ -246,13 +248,13 @@ const OrderPage = ({ onNavigateToListing }) => {
                             <>
                               <PrimaryButton
                                 onClick={() => updateOrderStatus(order.id, "confirmed")}
-                                className="px-4 py-2 text-sm"
+                                className="px-4 py-2 text-sm bg-red-600 hover:bg-red-700 border-0"
                               >
                                 Confirm Order
                               </PrimaryButton>
                               <button
                                 onClick={() => deleteOrder(order.id)}
-                                className="px-4 py-2 text-sm text-red-600 hover:text-red-700 font-medium"
+                                className="px-4 py-2 text-sm text-red-600 hover:text-red-700 font-medium border border-red-300 hover:border-red-400 rounded-lg transition-all duration-300"
                               >
                                 Cancel
                               </button>
@@ -261,23 +263,23 @@ const OrderPage = ({ onNavigateToListing }) => {
                           {order.status === "confirmed" && (
                             <PrimaryButton
                               onClick={() => updateOrderStatus(order.id, "delivered")}
-                              className="px-4 py-2 text-sm"
+                              className="px-4 py-2 text-sm bg-green-600 hover:bg-green-700 border-0"
                             >
                               Mark Delivered
                             </PrimaryButton>
                           )}
                           {order.status === "delivered" && (
-                            <span className="text-green-600 font-medium text-sm">Completed</span>
+                            <span className="text-green-600 font-medium text-sm bg-green-100 px-3 py-1 rounded-full border border-green-200">Completed</span>
                           )}
                         </div>
                       </div>
 
                       {/* Additional Info */}
-                      <div className="mt-4 pt-4 border-t border-gray-200">
+                      <div className="mt-4 pt-4 border-t border-red-200">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                           <div>
                             <span className="font-medium text-gray-700">Order ID:</span>
-                            <span className="ml-2 text-gray-600">#{order.id}</span>
+                            <span className="ml-2 text-red-600 font-semibold">#{order.id}</span>
                           </div>
                           <div>
                             <span className="font-medium text-gray-700">Order Date:</span>
@@ -297,16 +299,16 @@ const OrderPage = ({ onNavigateToListing }) => {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <div className="bg-white rounded-2xl shadow-lg p-6 border border-red-100">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
             <div className="flex flex-wrap gap-4">
-              <PrimaryButton onClick={() => window.print()}>
+              <PrimaryButton className="bg-red-600 hover:bg-red-700 border-0">
                 Print Orders Report
               </PrimaryButton>
-              <PrimaryButton variant="secondary" onClick={() => setOrders([])}>
+              <PrimaryButton variant="secondary" className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
                 Clear All Orders
               </PrimaryButton>
-              <button className="text-red-600 hover:text-red-700 font-medium">
+              <button className="text-red-600 hover:text-red-700 font-medium border-2 border-red-300 hover:border-red-400 px-4 py-2 rounded-lg transition-all duration-300">
                 Export to Excel
               </button>
             </div>
