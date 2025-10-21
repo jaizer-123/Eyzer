@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../LandingPage.css';
 
-const LandingPage = () => {
+const LandingPage = ({onNavigateToListing} ) => {
   const [currentCar, setCurrentCar] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -157,12 +157,12 @@ const LandingPage = () => {
             <a href="#models" className="nav-link">Models</a>
             <a href="#performance" className="nav-link">Performance</a>
             <a href="#gallery" className="nav-link">Gallery</a>
-            <a href="#contact" className="nav-link">Contact</a>
+       
           </div>
 
           <div className="nav-actions">
-            <button className="cta-button secondary">Test Drive</button>
-            <button className="cta-button primary">Configure</button>
+            
+            <button className="cta-button primary" onClick={onNavigateToListing} >Buy Now</button>
           </div>
 
           <button 
@@ -395,7 +395,6 @@ const LandingPage = () => {
               <h4>Company</h4>
               <a href="#about">About</a>
               <a href="#careers">Careers</a>
-              <a href="#contact">Contact</a>
             </div>
             
             <div className="footer-section">

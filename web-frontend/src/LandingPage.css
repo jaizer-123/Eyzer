@@ -110,6 +110,7 @@
   }
   
   .nav-actions {
+    margin-right: 80px;
     display: flex;
     gap: 1rem;
   }
