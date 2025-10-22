@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../LandingPage.css';
 
-const LandingPage = ({ onNavigateToListing }) => {
+const LandingPage = ({onNavigateToListing} ) => {
   const [currentCar, setCurrentCar] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,105 +53,17 @@ const LandingPage = ({ onNavigateToListing }) => {
     },
     {
       id: 5,
-      name: "Bugatti Chiron Super Sport",
-      price: "$3,900,000",
-      horsepower: "1,600 HP",
-      acceleration: "2.4s",
-      topSpeed: "273 mph",
-      image: "https://paisleyautocare.co.uk/cdn/shop/articles/da8f4193b2739bcefd7fce09c09d820d.jpg?v=1686642816&width=1600",
-      color: "Jet Blue Carbon",
-      description: "The ultimate hypercar representing the peak of automotive engineering and speed."
-    },
-    {
-      id: 6,
-      name: "Rolls-Royce Phantom",
-      price: "$455,000",
-      horsepower: "563 HP",
-      acceleration: "5.1s",
-      topSpeed: "155 mph",
-      image: "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-      color: "Diamond Black",
-      description: "The epitome of luxury motoring with unparalleled comfort and craftsmanship."
-    },
-    {
-      id: 7,
-      name: "Bentley Continental GT Speed",
-      price: "$245,000",
-      horsepower: "650 HP",
-      acceleration: "3.5s",
-      topSpeed: "208 mph",
-      image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-      color: "Mulliner Spectre",
-      description: "Grand tourer combining British luxury with breathtaking performance."
-    },
-    {
-      id: 8,
-      name: "Aston Martin DBS Superleggera",
-      price: "$316,300",
-      horsepower: "715 HP",
-      acceleration: "3.2s",
-      topSpeed: "211 mph",
-      image: "https://www.amarisupercars.com/blobs/stock/1241480/images/cdce4f56-3ba3-4b72-8a8d-bb89d44d9b8d.jpg?width=2000&height=1333",
-      color: "Skyfall Silver",
-      description: "British grand tourer with sublime elegance and brutal performance."
-    },
-    {
-      id: 9,
-      name: "Mercedes-Benz S-Class Maybach",
-      price: "$184,900",
-      horsepower: "496 HP",
-      acceleration: "4.8s",
-      topSpeed: "155 mph",
-      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-      color: "Obsidian Black",
-      description: "Ultimate luxury sedan with first-class rear seating and cutting-edge technology."
-    },
-    {
-      id: 10,
-      name: "Lamborghini Huracán EVO",
-      price: "$261,274",
-      horsepower: "631 HP",
-      acceleration: "2.9s",
-      topSpeed: "202 mph",
-      image: "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/huracan/evo/2022/10_06/over/hura_evo_over_01.jpg",
-      color: "Verde Mantis",
-      description: "The perfect combination of technology and design in a V10 masterpiece."
-    },
-    {
-      id: 11,
-      name: "Ferrari 812 Superfast",
-      price: "$335,000",
-      horsepower: "789 HP",
-      acceleration: "2.9s",
-      topSpeed: "211 mph",
-      image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80",
-      color: "Rosso Berlinetta",
-      description: "The most powerful naturally aspirated production car engine ever built."
-    },
-    {
-      id: 12,
-      name: "Porsche Taycan Turbo S",
-      price: "$185,000",
-      horsepower: "750 HP",
-      acceleration: "2.6s",
-      topSpeed: "161 mph",
-      image: "https://cdn.motor1.com/images/mgl/8ww1J/s1/2021-porsche-taycan-turbo-s.jpg",
-      color: "Frozen Blue Metallic",
-      description: "Electric sports sedan redefining performance with instant torque and precision."
-    },
-    {
-      id: 13,
       name: "Audi R8 V10 Performance",
       price: "$194,200",
       horsepower: "602 HP",
       acceleration: "3.2s",
       topSpeed: "205 mph",
-      image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80",
+      image: "https://hips.hearstapps.com/hmg-prod/images/2023-audi-r8-gt-front-three-quarters-motion-3-1664827965.jpg?crop=0.684xw:0.577xh;0.0321xw,0.281xh&resize=1200:*",
       color: "Daytona Gray",
       description: "Everyday supercar with quattro all-wheel drive and naturally aspirated V10 engine."
     },
     {
-      id: 14,
+      id: 6,
       name: "BMW M8 Competition",
       price: "$133,995",
       horsepower: "617 HP",
@@ -162,116 +74,48 @@ const LandingPage = ({ onNavigateToListing }) => {
       description: "Luxury grand tourer with racetrack-ready performance capabilities."
     },
     {
-      id: 15,
-      name: "McLaren Artura",
-      price: "$225,000",
-      horsepower: "671 HP",
-      acceleration: "3.0s",
-      topSpeed: "205 mph",
-      image: "https://mclaren.scene7.com/is/image/mclaren/P16FluxG34thFront_2?wid=1276&hei=718",
-      color: "Ceramic Grey",
-      description: "Next-generation hybrid supercar combining electric efficiency with V6 power."
-    },
-    {
-      id: 16,
-      name: "Lexus LC 500",
-      price: "$93,000",
-      horsepower: "471 HP",
-      acceleration: "4.4s",
-      topSpeed: "168 mph",
-      image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-      color: "Structural Blue",
-      description: "Japanese luxury coupe with breathtaking design and naturally aspirated V8."
-    },
-    {
-      id: 17,
-      name: "Jaguar F-Type R",
-      price: "$103,200",
-      horsepower: "575 HP",
+      id: 7,
+      name: "Mercedes-AMG GT R",
+      price: "$162,900",
+      horsepower: "577 HP",
       acceleration: "3.5s",
-      topSpeed: "186 mph",
-      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/2017_Jaguar_F-Type_V6_R-Dynamic_Automatic_3.0_Front.jpg/1200px-2017_Jaguar_F-Type_V6_R-Dynamic_Automatic_3.0_Front.jpg",
-      color: "British Racing Green",
-      description: "British sports car with iconic design and supercharged V8 performance."
+      topSpeed: "198 mph",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Festival_automobile_international_2015_-_Mercedes_AMG_GT_-_003.jpg/1024px-Festival_automobile_international_2015_-_Mercedes_AMG_GT_-_003.jpg",
+      color: "Green Hell Magno",
+      description: "The beast from Affalterbach with track-focused aerodynamics and performance."
     },
     {
-      id: 18,
-      name: "Maserati MC20",
-      price: "$212,000",
-      horsepower: "621 HP",
+      id: 8,
+      name: "Nissan GT-R Nismo",
+      price: "$210,740",
+      horsepower: "600 HP",
       acceleration: "2.9s",
-      topSpeed: "202 mph",
-      image: "https://www.europeanprestige.co.uk/blobs/stock/627/images/89c3b787-6389-4c0d-a95f-24f0a2c4c0b7/mc20-2.jpg?width=2000&height=1333",
-      color: "Blu Infinito",
-      description: "Italian mid-engine supercar featuring innovative Nettuno V6 engine technology."
+      topSpeed: "205 mph",
+      image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80",
+      color: "Pearl White",
+      description: "Godzilla returns with enhanced aerodynamics and hand-built engine."
     },
     {
-      id: 19,
-      name: "Koenigsegg Jesko Absolut",
-      price: "$2,800,000",
-      horsepower: "1,600 HP",
-      acceleration: "2.5s",
-      topSpeed: "330 mph",
-      image: "https://www.thesupercarblog.com/wp-content/uploads/2025/04/Koenigsegg-Jesko-Absolut-Kronos-4-1-1000x600.jpg",
-      color: "Crystal White",
-      description: "The ultimate speed machine designed to break every production car record."
+      id: 9,
+      name: "Chevrolet Corvette Z06",
+      price: "$106,395",
+      horsepower: "670 HP",
+      acceleration: "2.6s",
+      topSpeed: "195 mph",
+      image: "https://issimi-vehicles-cdn.b-cdn.net/publicamlvehiclemanagement/VehicleDetails/599/timestamped-1718824678864-2023%20Chevrolet%20Corvette%20Z06%20Coupe%203LZ_000008.jpg?width=3840&quality=75",
+      color: "Arctic White",
+      description: "American supercar with mid-engine configuration and track-proven performance."
     },
     {
-      id: 20,
-      name: "Pagani Huayra BC",
-      price: "$2,600,000",
-      horsepower: "791 HP",
-      acceleration: "2.8s",
-      topSpeed: "238 mph",
-      image: "https://en.wheelz.me/wp-content/uploads/2024/11/2017-Pagani-Huayra-BC-Coupe_1290414.webp",
-      color: "Carbon Fiber",
-      description: "Automotive artwork with unparalleled craftsmanship and hypercar performance."
-    }
-  ];
-
-  const features = [
-    {
-      icon: "⚡",
-      title: "Lightning Fast",
-      description: "Acceleration that pushes you back in your seat with every launch"
-    },
-    {
-      icon: "🎯",
-      title: "Precision Handling",
-      description: "Advanced suspension and steering for unparalleled control"
-    },
-    {
-      icon: "💎",
-      title: "Luxury Crafted",
-      description: "Hand-finished interiors with premium materials throughout"
-    },
-    {
-      icon: "🛡️",
-      title: "Advanced Safety",
-      description: "Cutting-edge technology to protect what matters most"
-    }
-  ];
-
-  const services = [
-    {
-      title: "Custom Build",
-      description: "Configure your dream car with our bespoke customization program",
-      icon: "🔧"
-    },
-    {
-      title: "Premium Financing",
-      description: "Exclusive financing options for qualified buyers",
-      icon: "💰"
-    },
-    {
-      title: "Global Delivery",
-      description: "We deliver anywhere in the world with white glove service",
-      icon: "🌎"
-    },
-    {
-      title: "Lifetime Support",
-      description: "24/7 concierge service and lifetime warranty options",
-      icon: "📞"
+      id: 10,
+      name: "Aston Martin DBS Superleggera",
+      price: "$316,300",
+      horsepower: "715 HP",
+      acceleration: "3.2s",
+      topSpeed: "211 mph",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/2018_Aston_Martin_DBS_Superleggera_V12_Automatic_5.2_Front.jpg/1024px-2018_Aston_Martin_DBS_Superleggera_V12_Automatic_5.2_Front.jpg",
+      color: "Skyfall Silver",
+      description: "British grand tourer with sublime elegance and brutal performance."
     }
   ];
 
@@ -305,7 +149,7 @@ const LandingPage = ({ onNavigateToListing }) => {
         <div className="nav-container">
           <div className="nav-logo">
             <span className="logo-icon">🏎️</span>
-            <span className="logo-text">LUXURY CARS</span>
+            <span className="logo-text">LUX-ZER-Y CARS</span>
           </div>
           
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
@@ -313,13 +157,12 @@ const LandingPage = ({ onNavigateToListing }) => {
             <a href="#models" className="nav-link">Models</a>
             <a href="#performance" className="nav-link">Performance</a>
             <a href="#gallery" className="nav-link">Gallery</a>
-            <a href="#services" className="nav-link">Services</a>
+       
           </div>
 
           <div className="nav-actions">
-            <button className="cta-button primary" onClick={onNavigateToListing}>
-              Buy Now
-            </button>
+            
+            <button className="cta-button primary" onClick={onNavigateToListing} >Buy Now</button>
           </div>
 
           <button 
@@ -373,7 +216,7 @@ const LandingPage = ({ onNavigateToListing }) => {
           </div>
 
           <div className="hero-actions">
-            <button className="hero-cta primary" onClick={onNavigateToListing}>
+            <button className="hero-cta primary">
               Discover More
               <span className="arrow">→</span>
             </button>
@@ -418,13 +261,29 @@ const LandingPage = ({ onNavigateToListing }) => {
           </p>
 
           <div className="features-grid">
-            {features.map((feature, index) => (
-              <div key={index} className="feature-card">
-                <div className="feature-icon">{feature.icon}</div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-              </div>
-            ))}
+            <div className="feature-card">
+              <div className="feature-icon">⚡</div>
+              <h3>Lightning Fast</h3>
+              <p>Acceleration that pushes you back in your seat with every launch</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon">🎯</div>
+              <h3>Precision Handling</h3>
+              <p>Advanced suspension and steering for unparalleled control</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon">💎</div>
+              <h3>Luxury Crafted</h3>
+              <p>Hand-finished interiors with premium materials throughout</p>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon">🛡️</div>
+              <h3>Advanced Safety</h3>
+              <p>Cutting-edge technology to protect what matters most</p>
+            </div>
           </div>
         </div>
       </section>
@@ -438,7 +297,7 @@ const LandingPage = ({ onNavigateToListing }) => {
           </p>
           
           <div className="gallery-grid">
-            {sportsCars.map((car) => (
+            {sportsCars.map((car, index) => (
               <div key={car.id} className="gallery-card">
                 <div className="gallery-image">
                   <img src={car.image} alt={car.name} />
@@ -448,33 +307,13 @@ const LandingPage = ({ onNavigateToListing }) => {
                 </div>
                 <div className="gallery-content">
                   <h3>{car.name}</h3>
-                  <p className="price">{car.price}</p>
+                  <p>{car.price}</p>
                   <div className="car-specs">
                     <span>{car.horsepower}</span>
                     <span>{car.acceleration}</span>
                     <span>{car.topSpeed}</span>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="services" id="services">
-        <div className="container">
-          <h2 className="section-title">Premium Services</h2>
-          <p className="section-subtitle">
-            Beyond exceptional vehicles, we offer unparalleled service
-          </p>
-          
-          <div className="services-grid">
-            {services.map((service, index) => (
-              <div key={index} className="service-card">
-                <div className="service-icon">{service.icon}</div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
               </div>
             ))}
           </div>
@@ -506,35 +345,8 @@ const LandingPage = ({ onNavigateToListing }) => {
             </div>
             
             <div className="performance-visual">
-              <div className="performance-image">
-                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Performance" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="testimonials">
-        <div className="container">
-          <h2 className="section-title">What Our Clients Say</h2>
-          <div className="testimonials-grid">
-            <div className="testimonial-card">
-              <div className="testimonial-content">
-                <p>"The buying experience was exceptional. The team at Luxury Cars made everything seamless from selection to delivery."</p>
-              </div>
-              <div className="testimonial-author">
-                <strong>James Wilson</strong>
-                <span>Porsche 911 Owner</span>
-              </div>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-content">
-                <p>"Unmatched performance and luxury. My Lamborghini exceeds all expectations every time I drive it."</p>
-              </div>
-              <div className="testimonial-author">
-                <strong>Sarah Chen</strong>
-                <span>Lamborghini Aventador Owner</span>
+              <div className="rotating-car">
+                <div className="car-3d"></div>
               </div>
             </div>
           </div>
@@ -562,9 +374,9 @@ const LandingPage = ({ onNavigateToListing }) => {
             <div className="footer-section">
               <div className="footer-logo">
                 <span className="logo-icon">🏎️</span>
-                LUXURY CARS
+                LUX-ZER-Y CARS
               </div>
-              <p>Redefining automotive excellence with premium sports cars and exceptional service.</p>
+              <p>Redefining automotive excellence since 2024</p>
               <div className="social-links">
                 <a href="#" className="social-link">Instagram</a>
                 <a href="#" className="social-link">Twitter</a>
@@ -577,14 +389,12 @@ const LandingPage = ({ onNavigateToListing }) => {
               <a href="#models">Models</a>
               <a href="#performance">Performance</a>
               <a href="#gallery">Gallery</a>
-              <a href="#services">Services</a>
             </div>
             
             <div className="footer-section">
               <h4>Company</h4>
               <a href="#about">About</a>
               <a href="#careers">Careers</a>
-              <a href="#contact">Contact</a>
             </div>
             
             <div className="footer-section">
@@ -596,7 +406,7 @@ const LandingPage = ({ onNavigateToListing }) => {
           </div>
           
           <div className="footer-bottom">
-            <p>&copy; 2024 Luxury Cars. All rights reserved.</p>
+            <p>&copy; 2024 Elite Drive. All rights reserved.</p>
           </div>
         </div>
       </footer>
